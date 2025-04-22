@@ -1,64 +1,90 @@
-# Welcome to your Lovable project
+# Federación de Levantamiento de Pesas de Nicaragua (FELEPNIC)
 
-## Project info
+Sitio oficial de la Federación de Levantamiento de Pesas de Nicaragua (FELEPNIC). Aquí encontrarás información institucional, gestión de atletas, eventos, galería, contacto y panel de administración.
 
-**URL**: https://lovable.dev/projects/92bf62c2-1f71-4526-a884-a66318d99ae8
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/92bf62c2-1f71-4526-a884-a66318d99ae8) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
+## Tecnologías utilizadas
 
 - Vite
+- React 18
 - TypeScript
-- React
-- shadcn-ui
 - Tailwind CSS
+- shadcn-ui
+- Supabase (autenticación y base de datos)
+- React Router DOM
+- TanStack React Query
+
+## Requisitos previos
+
+- [Node.js](https://nodejs.org/) (v18 o superior recomendado)
+- [npm](https://www.npmjs.com/) (v9 o superior recomendado)
+
+## Instalación
+
+1. Clona el repositorio:
+   ```bash
+   git clone <TU_URL_DEL_REPO>
+   cd nica-pesas-web-main
+   ```
+2. Copia el archivo de ejemplo de variables de entorno y configura tus credenciales de Supabase:
+   ```bash
+   cp .env.example .env
+   # Edita el archivo .env con tus datos reales de Supabase
+   ```
+3. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+
+## Uso en desarrollo
+
+Para iniciar el servidor de desarrollo:
+```bash
+npm run dev
+```
+Abre tu navegador en [http://localhost:5173](http://localhost:5173) o la URL que indique la terminal.
+
+## Scripts útiles
+
+- `npm run dev`: Inicia el servidor de desarrollo
+- `npm run build`: Genera la versión optimizada para producción
+- `npm run preview`: Previsualiza la build de producción
+- `npm run lint`: Ejecuta el linter
+
+## Estructura principal del proyecto
+
+- `src/` — Código fuente principal (componentes, páginas, lógica)
+- `public/` — Archivos públicos (favicon, imágenes, etc.)
+- `dist/` — Carpeta generada al construir la app para producción
+
+## Variables de entorno
+
+Debes configurar el archivo `.env` con las siguientes variables:
+```env
+VITE_SUPABASE_URL=tu_supabase_url
+VITE_SUPABASE_ANON_KEY=tu_supabase_anon_key
+```
+
+## Despliegue
+
+Puedes desplegar la aplicación en servicios como Vercel, Netlify o tu propio servidor. Solo necesitas construir la app con:
+```bash
+npm run build
+```
+Y servir el contenido de la carpeta `dist/`.
+
+## Licencia
+
+Este proyecto es propiedad de la Federación de Levantamiento de Pesas de Nicaragua. Uso interno y educativo.
+
+## Contacto
+
+- Federación de Levantamiento de Pesas de Nicaragua
+- Email: [marcasnt@gmail.com]
+
+
+---
+
+> Desarrollado con ❤️ para la comunidad de levantamiento de pesas de Nicaragua.
 
 ## How can I deploy this project?
 
