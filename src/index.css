@@ -1,0 +1,100 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animaciones personalizadas */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 6)); /* Ancho del logo * número de logos */
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+/* Pausa la animación en hover */
+.overflow-hidden:hover .animate-scroll {
+  animation-play-state: paused;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 221 95% 22%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 43 68% 86%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 37 59% 63%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221 95% 22%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-navy text-white hover:bg-navy/90 px-6 py-3 rounded-md font-semibold transition-all;
+  }
+  
+  .btn-secondary {
+    @apply bg-gold text-navy hover:bg-gold/90 px-6 py-3 rounded-md font-semibold transition-all;
+  }
+
+  .page-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-navy;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold text-navy relative pb-2 
+           after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-20 after:h-1 after:bg-gold;
+  }
+
+  .section-container {
+    @apply container mx-auto max-w-7xl px-4 py-16;
+  }
+
+  .nav-link {
+    @apply text-navy font-medium hover:text-gold transition-colors;
+  }
+
+  .nav-link-active {
+    @apply text-gold font-semibold;
+  }
+}
