@@ -22,6 +22,7 @@ import AdminPanel from "./pages/AdminPanel";
 
 import { useEffect } from 'react';
 import { supabase } from './lib/supabase';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const queryClient = new QueryClient();
 
@@ -43,30 +44,33 @@ const App = () => {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/mision" element={<Mision />} />
-            <Route path="/vision" element={<Vision />} />
-            <Route path="/historia" element={<Historia />} />
-            <Route path="/gestion-atletas" element={<AthleteManagement />} />
-            <Route path="/admin-login" element={<AdminLogin />} />
-            <Route path="/admin-panel" element={<AdminPanel />} />
-            <Route path="/eventos" element={<Eventos />} />
-            <Route path="/galeria" element={<Galeria />} />
-            <Route path="/registro-atleta" element={<AthleteRegistration />} />
-            <Route path="/contacto" element={<Contacto />} />
-            <Route path="/atleta-login" element={<AtletaLogin />} />
-            <Route path="/atleta-perfil" element={<AtletaPerfil />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/mision" element={<Mision />} />
+              <Route path="/vision" element={<Vision />} />
+              <Route path="/historia" element={<Historia />} />
+              <Route path="/gestion-atletas" element={<AthleteManagement />} />
+              <Route path="/admin-login" element={<AdminLogin />} />
+              <Route path="/admin-panel" element={<AdminPanel />} />
+              <Route path="/eventos" element={<Eventos />} />
+              <Route path="/galeria" element={<Galeria />} />
+              <Route path="/registro-atleta" element={<AthleteRegistration />} />
+              <Route path="/contacto" element={<Contacto />} />
+              <Route path="/atleta-login" element={<AtletaLogin />} />
+              <Route path="/atleta-perfil" element={<AtletaPerfil />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+      <SpeedInsights />
+    </>
   );
 }
 
