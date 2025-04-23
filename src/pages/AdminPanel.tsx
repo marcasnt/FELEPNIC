@@ -32,7 +32,7 @@ const AdminPanel: React.FC = () => {
                   } catch (e) {
                     alert('Error al cerrar sesión');
                   }
-                  window.location.href = '/atleta-login';
+                  window.location.href = '/admin-login';
                 }
               }}
             >
