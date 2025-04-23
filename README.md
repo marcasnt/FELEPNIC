@@ -85,15 +85,3 @@ Este proyecto es propiedad de la Federación de Levantamiento de Pesas de Nicara
 ---
 
 > Desarrollado con ❤️ para la comunidad de levantamiento de pesas de Nicaragua.
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/92bf62c2-1f71-4526-a884-a66318d99ae8) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)

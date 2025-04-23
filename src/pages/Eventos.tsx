@@ -153,15 +153,15 @@ const Eventos = () => {
       <section className="section-container">
         <h2 className="section-title mb-12">Eventos Pasados</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
           {pastEvents.map((event, index) => (
-            <div key={event.id} className="border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow animate-fade-in" style={{ animationDelay: `${0.1 * index}s` }}>
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src={event.image} 
-                  alt={event.title} 
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                />
+            <div key={event.id} className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-200 hover:shadow-2xl hover:scale-[1.01]">
+              <img src={event.image} alt={event.title} className="w-full h-48 object-cover transition-all duration-200 hover:brightness-105" />
+              <div className="p-6 flex-1 flex flex-col">
+                <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                  <Calendar size={20} className="text-navy" />
+                  {event.title}
+                </h3>
               </div>
               <div className="p-4">
                 <h3 className="text-lg font-bold text-navy mb-2">{event.title}</h3>

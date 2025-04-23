@@ -129,20 +129,15 @@ const AtletaPerfil = () => {
       </section>
       <div className="container mx-auto px-4">
             {/* Profile Header */}
-            <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                <div className="h-32 w-32 rounded-full bg-navy/10 flex items-center justify-center text-navy overflow-hidden cursor-pointer group" onClick={() => athlete.photo_url && setShowPhotoModal(true)} title="Ampliar foto de perfil">
-  {athlete.photo_url ? (
-    <img
-      src={athlete.photo_url}
-      alt="Foto de perfil"
-      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
-    />
-  ) : (
-    <User size={64} />
-  )}
-</div>
-
+            <div className="w-full flex justify-center mt-6">
+              <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center max-w-md w-full transition-all duration-200 hover:shadow-2xl hover:scale-[1.01]">
+                <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-gold shadow-lg mb-4 cursor-pointer hover:scale-110 transition-transform duration-200" onClick={() => setShowPhotoModal(true)}>
+                  <img
+                    src={athlete.photo_url || '/avatar-default.png'}
+                    alt="Foto de perfil"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 {/* Modal para ampliar la foto */}
 {showPhotoModal && (
   <div

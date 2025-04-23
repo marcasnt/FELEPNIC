@@ -12,28 +12,47 @@ const AdminLogin = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [formErrors, setFormErrors] = useState<any>({});
   const navigate = useNavigate();
   const [showReset, setShowReset] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
   const [resetMessage, setResetMessage] = useState('');
 
+  const validate = () => {
+    const errors: any = {};
+    if (!email.trim()) {
+      errors.email = 'El correo es requerido.';
+    } else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      errors.email = 'El correo no es válido.';
+    }
+    if (!password) {
+      errors.password = 'La contraseña es requerida.';
+    }
+    return errors;
+  };
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    const errors = validate();
+    setFormErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
     setIsLoading(true);
     try {
       const { session } = await authService.signIn(email, password);
       const userRole = session?.user?.user_metadata?.role;
       if (userRole !== 'admin') {
         setError('No tienes permisos de administrador.');
-toast.error('No tienes permisos de administrador.');
+        toast.error('No tienes permisos de administrador.');
         setIsLoading(false);
         return;
       }
       navigate('/admin-panel');
     } catch (err: any) {
       setError(err.message || 'Error al iniciar sesión');
-toast.error(err.message || 'Error al iniciar sesión');
+      toast.error(err.message || 'Error al iniciar sesión');
     } finally {
       setIsLoading(false);
     }

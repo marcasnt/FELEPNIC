@@ -29,9 +29,10 @@ const AthleteModal: React.FC<AthleteModalProps> = ({
   if (!show) return null;
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-8 w-full max-w-md">
-        <h2 className="text-xl font-bold mb-4">{isEdit ? 'Editar Atleta' : 'Agregar Atleta'}</h2>
+      <div className="bg-white rounded-lg p-4 sm:p-8 w-full max-w-md shadow-2xl transition-all duration-300 transform-gpu scale-100 hover:scale-[1.01]">
+        <h2 className="text-xl font-bold mb-4 text-center">{isEdit ? 'Editar Atleta' : 'Agregar Atleta'}</h2>
         <form className="flex flex-col gap-3" onSubmit={onSubmit}>
+
           {/* Foto actual o preview */}
           {(preview || form.photoPreview || form.photo_url) && (
             <div className="flex flex-col items-center mb-2">

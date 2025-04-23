@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronDown, ArrowLeft, LogOut } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowLeft, LogOut, Key } from 'lucide-react';
 
 // Extiende el tipo Window para evitar errores de TS
 declare global {
@@ -51,48 +50,47 @@ const Navbar = () => {
     }`}>
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center relative">
-          <Link to="/" className="flex items-center">
-            <span className={`font-bold text-xl md:text-2xl ${scrolled ? 'text-navy' : 'text-white'}`}>FELEPNIC</span>
+          <Link to="/" className="flex items-center group">
+            <span className={`font-bold text-xl md:text-2xl transition-colors duration-300 group-hover:text-gold ${scrolled ? 'text-navy' : 'text-white'}`}>FELEPNIC</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link
-              to="/admin-login"
-              className="text-xs px-2 py-1 rounded bg-navy/80 text-white/80 hover:bg-navy hover:text-white shadow-sm transition-all ml-4"
-              style={{ fontSize: '11px', opacity: 0.7 }}
-            >
-              Panel de administradores
-            </Link>
-            <Link to="/" className={`nav-link ${scrolled ? 'text-navy' : 'text-white'}`}>Inicio</Link>
-            <div className="relative group">
-              <button className={`nav-link flex items-center ${scrolled ? 'text-navy' : 'text-white'}`}>
-                Acerca <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
+          <div className="hidden lg:flex items-center space-x-4 md:space-x-6 ml-auto">
+            {/* Enlaces con microinteracciones */}
+            <Link to="/" className={`nav-link text-xs md:text-sm ${scrolled ? 'text-navy' : 'text-white'}`}>Inicio</Link>
+            <div className="relative group text-xs md:text-sm">
+              <button className={`nav-link flex items-center ${scrolled ? 'text-navy' : 'text-white'}`}>Acerca <ChevronDown className="ml-1 h-4 w-4" /></button>
               <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden transform scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-200 origin-top-left z-50">
                 <Link to="/mision" className="block px-4 py-2 hover:bg-cream transition-colors">Misión</Link>
                 <Link to="/vision" className="block px-4 py-2 hover:bg-cream transition-colors">Visión</Link>
                 <Link to="/historia" className="block px-4 py-2 hover:bg-cream transition-colors">Historia</Link>
               </div>
             </div>
-            <Link to="/eventos" className={`nav-link ${scrolled ? 'text-navy' : 'text-white'}`}>Eventos</Link>
-            <Link to="/galeria" className={`nav-link ${scrolled ? 'text-navy' : 'text-white'}`}>Galería</Link>
-            <Link to="/registro-atleta" className={`nav-link ${scrolled ? 'text-navy' : 'text-white'}`}>Registro</Link>
-            <Link to="/contacto" className={`nav-link ${scrolled ? 'text-navy' : 'text-white'}`}>Contacto</Link>
+            <Link to="/eventos" className={`nav-link text-xs md:text-sm ${scrolled ? 'text-navy' : 'text-white'}`}>Eventos</Link>
+            <Link to="/galeria" className={`nav-link text-xs md:text-sm ${scrolled ? 'text-navy' : 'text-white'}`}>Galería</Link>
+            <Link to="/registro-atleta" className={`nav-link text-xs md:text-sm ${scrolled ? 'text-navy' : 'text-white'}`}>Registro</Link>
+            <Link to="/contacto" className={`nav-link text-xs md:text-sm ${scrolled ? 'text-navy' : 'text-white'}`}>Contacto</Link>
             <Link 
               to="/atleta-login" 
-              className={`px-4 py-2 rounded-md ${
+              className={`px-3 py-1 rounded-md text-xs md:text-sm ${
                 scrolled 
                   ? 'bg-navy text-white hover:bg-navy/90' 
                   : 'bg-white text-navy hover:bg-cream'
-              } transition-colors font-medium`}
+              } transition-colors font-medium max-w-[90px] truncate`}
+            >Acceder</Link>
+            <Link
+              to="/admin-login"
+              className={`flex items-center gap-1 px-2 py-1 rounded-md border border-navy/30 bg-navy/10 text-xs md:text-sm font-medium ml-1 relative transition-all duration-200 hover:bg-navy/80 hover:text-white focus:outline-none hover:shadow-md hover:scale-105 group ${scrolled ? 'text-navy hover:bg-navy hover:text-white' : 'text-white hover:bg-navy hover:text-white'}`}
+              style={{ minHeight: 32 }}
             >
-              Acceder
+              <Key size={16} className="mr-1 transition-transform duration-200 group-hover:rotate-12" />
+              <span className="relative z-10">Admin</span>
+              <span className="absolute left-2 right-2 bottom-1 h-[2px] bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left rounded-full opacity-80"></span>
             </Link>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button 
               onClick={() => setIsOpen(!isOpen)}
               className={`p-2 ${scrolled ? 'text-navy' : 'text-white'}`}
@@ -104,7 +102,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Navigation */}
-      <div className={`md:hidden bg-white w-full shadow-lg transform transition-all duration-300 ease-in-out ${
+      <div className={`lg:hidden bg-white w-full shadow-lg transform transition-all duration-300 ease-in-out ${
         isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 invisible'
       }`}>
         <div className="container mx-auto px-4 py-4 space-y-3">
@@ -138,5 +136,4 @@ const Navbar = () => {
     </nav>
   );
 };
-
 export default Navbar;

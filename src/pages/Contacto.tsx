@@ -13,6 +13,20 @@ const Contacto = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<any>({});
+
+  const validate = () => {
+    const newErrors: any = {};
+    if (!formData.nombre.trim()) newErrors.nombre = 'El nombre es requerido.';
+    if (!formData.email.trim()) {
+      newErrors.email = 'El correo es requerido.';
+    } else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(formData.email)) {
+      newErrors.email = 'El correo no es válido.';
+    }
+    if (!formData.asunto.trim()) newErrors.asunto = 'El asunto es requerido.';
+    if (!formData.mensaje.trim()) newErrors.mensaje = 'El mensaje es requerido.';
+    return newErrors;
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -20,15 +34,22 @@ const Contacto = () => {
       ...prevData,
       [name]: value
     }));
+    setErrors((prev: any) => ({ ...prev, [name]: undefined }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Aquí iría la lógica para enviar los datos al servidor
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    // Sanitización básica
+    const sanitizedData = Object.fromEntries(
+      Object.entries(formData).map(([k, v]) => [k, String(v).replace(/[<>]/g, '')])
+    );
+    console.log('Form submitted:', sanitizedData);
     setSubmitted(true);
-    
-    // Reset form after 5 seconds
     setTimeout(() => {
       setSubmitted(false);
       setFormData({
@@ -38,6 +59,7 @@ const Contacto = () => {
         asunto: '',
         mensaje: ''
       });
+      setErrors({});
     }, 5000);
   };
 
