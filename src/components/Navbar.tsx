@@ -55,11 +55,15 @@ const Navbar = () => {
             <span className={`font-bold text-xl md:text-2xl ${scrolled ? 'text-navy' : 'text-white'}`}>FELEPNIC</span>
           </Link>
 
-          {/* Botones especiales para panel de atletas */}
-          
-
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
+            <Link
+              to="/admin-login"
+              className="text-xs px-2 py-1 rounded bg-navy/80 text-white/80 hover:bg-navy hover:text-white shadow-sm transition-all ml-4"
+              style={{ fontSize: '11px', opacity: 0.7 }}
+            >
+              Panel de administradores
+            </Link>
             <Link to="/" className={`nav-link ${scrolled ? 'text-navy' : 'text-white'}`}>Inicio</Link>
             <div className="relative group">
               <button className={`nav-link flex items-center ${scrolled ? 'text-navy' : 'text-white'}`}>
@@ -104,6 +108,14 @@ const Navbar = () => {
         isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 invisible'
       }`}>
         <div className="container mx-auto px-4 py-4 space-y-3">
+          <Link
+            to="/admin-login"
+            className="block text-xs px-2 py-1 rounded bg-navy/80 text-white/80 hover:bg-navy hover:text-white shadow-sm transition-all mb-2 text-right ml-auto w-max"
+            style={{ fontSize: '11px', opacity: 0.7 }}
+            onClick={() => setIsOpen(false)}
+          >
+            Panel de administradores
+          </Link>
           <Link to="/" className="block nav-link py-2" onClick={() => setIsOpen(false)}>Inicio</Link>
           <div className="border-t border-gray-100 pt-2">
             <Link to="/mision" className="block nav-link py-2 pl-4" onClick={() => setIsOpen(false)}>Misión</Link>
