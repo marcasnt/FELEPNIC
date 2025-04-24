@@ -5,7 +5,7 @@ export const upcomingEvents = [
     date: "15 de Mayo, 2025",
     location: "Managua, Nicaragua",
     description: "Competencia nacional para atletas juveniles en todas las categorías de peso.",
-    image: "/dist/orlando.jpg",
+    image: "/public/orlando.jpg",
     time: "9:00 AM - 6:00 PM",
     participants: "150+ atletas"
   },
