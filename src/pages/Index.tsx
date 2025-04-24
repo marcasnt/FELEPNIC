@@ -135,7 +135,7 @@ const Index = () => {
           </div>
           <div className="rounded-lg overflow-hidden shadow-xl animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <img 
-              src="/dist/sobrenosotros.jpg"
+              src="/public/sobrenosotros.jpg"
               alt="Levantamiento de pesas" 
               className="w-full h-full object-cover"
             />
