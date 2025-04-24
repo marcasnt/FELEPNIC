@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import AthleteManagement from './AthleteManagement';
+import EventosRegistroAdmin from '../components/EventosRegistroAdmin';
 
 const AdminPanel: React.FC = () => {
   // Aquí puedes agregar más herramientas y secciones para el administrador en el futuro
@@ -44,6 +45,10 @@ const AdminPanel: React.FC = () => {
         {/* Herramientas del administrador */}
         <div className="mb-10">
           <AthleteManagement />
+        </div>
+        {/* Lista de atletas registrados por evento */}
+        <div className="mb-10">
+          <EventosRegistroAdmin />
         </div>
         {/* Aquí puedes agregar más componentes o secciones para el admin */}
       </div>

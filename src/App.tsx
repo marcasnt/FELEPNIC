@@ -10,6 +10,8 @@ import Mision from "./pages/Mision";
 import Vision from "./pages/Vision";
 import Historia from "./pages/Historia";
 import Eventos from "./pages/Eventos";
+import EventoDetalle from "./pages/EventoDetalle";
+import RegistroEvento from "./pages/RegistroEvento";
 import Galeria from "./pages/Galeria";
 
 import Contacto from "./pages/Contacto";
@@ -61,6 +63,8 @@ const App = () => {
               <Route path="/admin-login" element={<AdminLogin />} />
               <Route path="/admin-panel" element={<AdminPanel />} />
               <Route path="/eventos" element={<Eventos />} />
+              <Route path="/eventos/:id" element={<EventoDetalle />} />
+              <Route path="/registro-evento/:id" element={<RegistroEvento />} />
               <Route path="/galeria" element={<Galeria />} />
               <Route path="/registro-atleta" element={<AthleteRegistration />} />
               <Route path="/contacto" element={<Contacto />} />
