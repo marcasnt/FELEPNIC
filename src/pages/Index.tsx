@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
-import { Trophy, Users, Calendar, Medal, ArrowRight, LineChart, Award, User } from 'lucide-react';
+import { Trophy, Users, Calendar, Medal, ArrowRight, LineChart, Award, User, MapPin, Clock } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
+
+import { upcomingEvents } from '../data/eventos';
 
 // Duplicamos los logos base para crear un efecto de desplazamiento infinito
 const baseLogos = [
@@ -132,7 +134,7 @@ const Index = () => {
           </div>
           <div className="rounded-lg overflow-hidden shadow-xl animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <img 
-              src="https://images.unsplash.com/photo-1533560904424-a0c61dc306fc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80" 
+              src="/public/sobrenosotros.jpg"
               alt="Levantamiento de pesas" 
               className="w-full h-full object-cover"
             />
@@ -237,27 +239,47 @@ const Index = () => {
         <h2 className="section-title mb-12 text-center mx-auto after:left-1/2 after:-translate-x-1/2">
           Próximos Eventos
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[1, 2, 3].map((item) => (
-            <div key={item} className="border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all group animate-fade-in" style={{ animationDelay: `${0.1 * item}s` }}>
-              <div className="h-48 overflow-hidden">
+        <div className="space-y-12">
+          {upcomingEvents.map((event, index) => (
+            <div key={event.id} className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center border-b border-gray-200 pb-12 animate-fade-in" style={{ animationDelay: `${0.1 * index}s` }}>
+              <div className="lg:col-span-2">
                 <img 
-                  src={`https://source.unsplash.com/random/600x400?weightlifting,${item}`} 
-                  alt="Evento de levantamiento" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  src={event.image} 
+                  alt={event.title} 
+                  className="w-full h-64 object-cover rounded-lg shadow-md"
                 />
               </div>
-              <div className="p-6">
-                <div className="text-sm text-gold font-medium mb-2">Mayo {10 + item * 5}, 2025</div>
-                <h3 className="text-xl font-bold text-navy mb-2 group-hover:text-gold transition-colors">
-                  Campeonato Nacional {2025 - item}
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Competencia nacional con participación de los mejores atletas del país en todas las categorías.
+              <div className="lg:col-span-3">
+                <h3 className="text-2xl font-bold text-navy mb-2">{event.title}</h3>
+                <div className="flex flex-wrap gap-4 mb-4">
+                  <div className="flex items-center text-gray-600">
+                    <Calendar className="h-5 w-5 mr-2 text-gold" />
+                    {event.date}
+                  </div>
+                  <div className="flex items-center text-gray-600">
+                    <MapPin className="h-5 w-5 mr-2 text-gold" />
+                    {event.location}
+                  </div>
+                  <div className="flex items-center text-gray-600">
+                    <Clock className="h-5 w-5 mr-2 text-gold" />
+                    {event.time}
+                  </div>
+                  <div className="flex items-center text-gray-600">
+                    <Users className="h-5 w-5 mr-2 text-gold" />
+                    {event.participants}
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-6">
+                  {event.description}
                 </p>
-                <Link to="/eventos" className="text-navy font-semibold flex items-center hover:text-gold transition-colors">
-                  Ver detalles <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+                <div className="flex flex-wrap gap-4">
+                  <Link to={`/eventos/${event.id}`} className="btn-primary">
+                    Ver Detalles
+                  </Link>
+                  <a href="#" className="btn-secondary flex items-center">
+                    Registrarse <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </div>
               </div>
             </div>
           ))}
