@@ -10,6 +10,7 @@ interface Registro {
   email: string;
   categoria: string;
   club: string;
+  id_federacion: string;
   telefono: string;
   registrado_en: string;
 }
@@ -58,6 +59,7 @@ const EventosRegistroAdmin: React.FC = () => {
                       <th className="px-3 py-2 border">Email</th>
                       <th className="px-3 py-2 border">Categoría</th>
                       <th className="px-3 py-2 border">Club</th>
+                      <th className="px-3 py-2 border">ID de Federación</th>
                       <th className="px-3 py-2 border">Teléfono</th>
                       <th className="px-3 py-2 border">Registrado en</th>
                     </tr>
@@ -69,6 +71,7 @@ const EventosRegistroAdmin: React.FC = () => {
                         <td className="border px-2 py-1">{reg.email}</td>
                         <td className="border px-2 py-1">{reg.categoria}</td>
                         <td className="border px-2 py-1">{reg.club}</td>
+                        <td className="border px-2 py-1">{reg.id_federacion}</td>
                         <td className="border px-2 py-1">{reg.telefono}</td>
                         <td className="border px-2 py-1">{new Date(reg.registrado_en).toLocaleString()}</td>
                       </tr>
