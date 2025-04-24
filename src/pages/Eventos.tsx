@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { Calendar, MapPin, Clock, Users, ExternalLink } from 'lucide-react';
 import { upcomingEvents } from '../data/eventos';
@@ -88,12 +89,12 @@ const Eventos = () => {
                   {event.description}
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <a href={`/eventos/${event.id}`} className="btn-primary">
+                  <Link to={`/eventos/${event.id}`} className="btn-primary">
                     Ver Detalles
-                  </a>
-                  <a href="#" className="btn-secondary flex items-center">
+                  </Link>
+                  <Link to={`/registro-evento/${event.id}`} className="btn-secondary flex items-center">
                     Registrarse <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

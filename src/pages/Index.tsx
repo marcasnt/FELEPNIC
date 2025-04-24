@@ -276,9 +276,9 @@ const Index = () => {
                   <Link to={`/eventos/${event.id}`} className="btn-primary">
                     Ver Detalles
                   </Link>
-                  <a href="#" className="btn-secondary flex items-center">
+                  <Link to={`/registro-evento/${event.id}`} className="btn-secondary flex items-center">
                     Registrarse <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
