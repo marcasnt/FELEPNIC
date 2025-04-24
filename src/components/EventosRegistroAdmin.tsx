@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { upcomingEvents } from '../data/eventos';
+import { exportToCSV } from '../lib/csvExport';
+import EstadisticasRegistros from './EstadisticasRegistros';
+import EditarRegistroModal from './EditarRegistroModal';
 
 interface Registro {
   id: number;
@@ -19,6 +22,8 @@ const EventosRegistroAdmin: React.FC = () => {
   const [registros, setRegistros] = useState<Registro[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [registroEditar, setRegistroEditar] = useState<Registro | null>(null);
 
   useEffect(() => {
     const fetchRegistros = async () => {
@@ -37,9 +42,67 @@ const EventosRegistroAdmin: React.FC = () => {
     fetchRegistros();
   }, []);
 
+  // Función para editar registro (solo placeholder, implementar modal o navegación)
+  const handleEdit = (reg: Registro) => {
+    setRegistroEditar(reg);
+    setModalOpen(true);
+  };
+
+  const handleSaveEdit = async (updated: Registro) => {
+    const { error } = await supabase.from('registro_eventos').update({
+      nombre: updated.nombre,
+      email: updated.email,
+      categoria: updated.categoria,
+      club: updated.club,
+      id_federacion: updated.id_federacion,
+      telefono: updated.telefono
+    }).eq('id', updated.id);
+    if (!error) {
+      setRegistros(registros.map(r => r.id === updated.id ? { ...r, ...updated } : r));
+      setModalOpen(false);
+      setRegistroEditar(null);
+    } else {
+      alert('Error al guardar cambios: ' + error.message);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setRegistroEditar(null);
+  };
+
+  // Función para cancelar registro
+  const handleDelete = async (id: number) => {
+    if (window.confirm('¿Seguro que deseas cancelar este registro?')) {
+      const { error } = await supabase.from('registro_eventos').delete().eq('id', id);
+      if (!error) {
+        setRegistros(registros.filter(r => r.id !== id));
+      } else {
+        alert('Error al cancelar: ' + error.message);
+      }
+    }
+  };
+
+  // Espacio para futuras estadísticas
+  // Aquí puedes agregar componentes de gráficas, etc.
+
   return (
     <div>
+      <EditarRegistroModal
+        registro={registroEditar}
+        isOpen={modalOpen}
+        onClose={handleCloseModal}
+        onSave={handleSaveEdit}
+      />
+      <EstadisticasRegistros registros={registros} eventos={upcomingEvents} />
       <h2 className="text-xl font-bold mb-4 text-navy">Atletas registrados por evento</h2>
+      <button
+        className="mb-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+        onClick={() => exportToCSV(registros)}
+      >
+        Descargar CSV
+      </button>
+      {/* Aquí se pueden mostrar estadísticas más adelante */}
       {loading && <div>Cargando registros...</div>}
       {error && <div className="bg-red-100 text-red-700 p-4 rounded mb-4">{error}</div>}
       {upcomingEvents.map(evento => {
@@ -74,6 +137,10 @@ const EventosRegistroAdmin: React.FC = () => {
                         <td className="border px-2 py-1">{reg.id_federacion}</td>
                         <td className="border px-2 py-1">{reg.telefono}</td>
                         <td className="border px-2 py-1">{new Date(reg.registrado_en).toLocaleString()}</td>
+                        <td className="border px-2 py-1">
+                          <button className="text-blue-600 hover:underline mr-2" onClick={() => handleEdit(reg)}>Editar</button>
+                          <button className="text-red-600 hover:underline" onClick={() => handleDelete(reg.id)}>Cancelar</button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
